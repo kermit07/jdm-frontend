@@ -1,0 +1,67 @@
+<section>
+  <div id="jdm_carousel" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <p class="jdm-motto">
+          JobDlaMuzyka.pl to baza sprawdzonych pracodawców
+          oraz ofert pracy dla muzyków.
+          Wybierz, co Cię interesuje.
+        </p>
+        <div class="jdm-motto-nav">
+          <ul>
+            <li><a routerLink="/client_saerch" routerLinkActive="router-active">Profile pracodawców</a></li>
+            <li><a routerLink="/offer_search" routerLinkActive="router-active">Opferty pracy</a></li>
+          </ul>
+        </div>
+        <div class="jdm-motto-search">
+          <input type="text" placeholder="Szukajka numer 1">
+        </div>
+      </div>
+      <div class="carousel-item">
+        <p class="jdm-motto">
+          Już dziś załóż swoje portfolio, dzięki któremu uzyskasz najnowsze atrakcyjne oferty pracy i zleceń,
+          poszerzysz swoje znajomości oraz rozwiniesz umiejętności muzyczne.
+          To nic nie kosztuje!
+        </p>
+        <div class="jdm-motto-nav">
+          <ul>
+            <li><a href="">Przejdź do kreatora</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <p class="jdm-motto">
+          Jeśli szukasz rąk do grania, utwórz profil pracodawcy,
+          dzięki któremu odnajdziesz wymarzonego muzyka!
+        </p>
+        <div class="jdm-motto-nav">
+          <ul>
+            <li><a href="">Utwórz profil pracodawcy</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#jdm_carousel" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </a>
+    <a class="carousel-control-next" href="#jdm_carousel" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </a>
+  </div>
+</section>
+<section>
+  <div class="jdm-container">
+    <div class="row">
+      Najnowsze oferty
+    </div>
+    <app-offer-grid></app-offer-grid>
+  </div>
+</section>
+<section>
+  <div class="jdm-container">
+    <div class="row">
+      Najlepsi muzycy
+    </div>
+    <app-artist-grid></app-artist-grid>
+  </div>
+</section>

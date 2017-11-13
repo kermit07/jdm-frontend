@@ -1,0 +1,48 @@
+.carousel .carousel-item {
+  background-image: url('../../../assets/img/motto-bgr_600_.jpg');
+  background-size: 600px;
+  height: 500px;
+}
+
+.jdm-motto {
+  font-size: 28px;
+  text-align: center;
+  padding: 5% 20%;
+  color: white;
+}
+
+.jdm-motto-nav ul {
+  margin: 40px 0px 0px 0px;
+  text-align: center;
+}
+
+.jdm-motto-nav ul li {
+  display: inline-block;
+}
+
+.jdm-motto-nav ul li a {
+  padding: 10px 20px;
+  margin: 0px 15px;
+  text-decoration: none;
+  color: #fff;
+  line-height: 60px;
+  border: 2px solid darkblue;
+  border-radius: 5px;
+}
+
+.jdm-motto-nav ul li a:hover {
+  color: darkblue;
+}
+
+.jdm-motto-search {
+  text-align: center;
+}
+
+.jdm-motto-search input {
+  width: 60%;
+  margin-top: 2em;
+  background: #fff;
+  font-size: 20px;
+  border-radius: 8px;
+  padding: 10px 20px;
+}

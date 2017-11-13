@@ -1,0 +1,15 @@
+
+.orange-square {
+  background-color: orange;
+  height: 140px;
+}
+
+.red-square {
+  background-color: grey;
+  height: 140px;
+}
+
+.jdm-box {
+  padding: 0px;
+  border: 2px solid darkblue;
+}

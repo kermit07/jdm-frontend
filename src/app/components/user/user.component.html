@@ -1,0 +1,31 @@
+<h1>Hello {{name}}</h1>
+<ul>
+  <li>wiek: {{age}}</li>
+  <li>email: {{email}}</li>
+  <li>ulica: {{address.street}}</li>
+  <li>city: {{address.city}}</li>
+  <li>województwo: {{address.province}}</li>
+</ul>
+<button (click)="getOlder()">next year</button>
+<h1>Edit user</h1>
+<form>
+  <div>
+    <label for="name">imię:</label>
+    <input type="text" id="name" [(ngModel)]="name" name="name" />
+  </div>
+  <div>
+    <label for="email">email:</label>
+    <input type="text" id="email" [(ngModel)]="email" name="email" />
+  </div>
+</form>
+<h3>Hobbies</h3>
+<ul>
+  <li *ngFor="let hobby of hobbies; let i=index;">
+    {{i+1}} - {{hobby}}
+    <button (click)="deleteHobby(i)">x</button>
+  </li>
+</ul>
+<form (submit)="addHobby(hobby.value)">
+  <label for="hobby">Hobby: </label>
+  <input type="text" #hobby id="hobby">
+</form>
