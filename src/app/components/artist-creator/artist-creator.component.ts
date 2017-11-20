@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {AccountForm, ArtistRegisterForm} from "../account-popup/account-popup.component";
 
 @Component({
   selector: 'app-artist-creator',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./artist-creator.component.css']
 })
 export class ArtistCreatorComponent implements OnInit {
+  @Input() artist:ArtistRegisterForm;
 
   constructor() { }
 

@@ -1,3 +1,21 @@
-<p>
-  offer-creator works!
-</p>
+<div>
+  <div>Krok 1 - wprowadzenie danych</div>
+  <div>Krok 2 - Tworzenie oferty</div>
+  <div>Krok 3 - Publikacja</div>
+</div>
+
+<div *ngIf="step == 1">
+  <app-client-creator [client]="client"></app-client-creator>
+  <button (click)="nextStep()">Dalej</button>
+  Masz już konto? <a (click)="openLoginDialog()">Zaloguj się</a>
+</div>
+<div *ngIf="step == 2">
+  <app-offer-form></app-offer-form>
+  <button (click)="prevStep()">Anuluj</button>
+  <button (click)="nextStep()">Dalej</button>
+</div>
+<div *ngIf="step == 3">
+  app-offer-view
+  <button (click)="prevStep()">Edytuj</button>
+  <button (click)="nextStep()">Publikuj</button>
+</div>

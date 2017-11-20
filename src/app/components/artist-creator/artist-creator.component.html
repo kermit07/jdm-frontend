@@ -1,3 +1,16 @@
-<p>
-  artist-creator works!
-</p>
+<div>
+  <span>Dane do kontaktu</span>
+  <form>
+    <div>
+      <input type="text" [(ngModel)]="artist.name" name="name" placeholder="Imię">
+    </div>
+    <div>
+      <input type="text" [(ngModel)]="artist.surname" name="surname" placeholder="Nazwisko">
+    </div>
+    <div>
+      <input type="text" placeholder="Coś tam">
+    </div>
+  </form>
+</div>
+<app-simple-auth-form></app-simple-auth-form>
+

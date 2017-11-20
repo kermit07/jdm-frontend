@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from "../../services/data.service";
 
 @Component({
   selector: 'app-user',
@@ -14,7 +13,7 @@ export class UserComponent implements OnInit {
   hobbies:string[];
   hello:any;
 
-  constructor(private dataService:DataService) {
+  constructor() {
     console.log("constructor")
   }
 
@@ -30,9 +29,6 @@ export class UserComponent implements OnInit {
     this.hobbies = ["sex", "drugs", "coding", "footbal"];
     this.hello = false;
     this.hello = 1;
-    this.dataService.getPosts().subscribe((posts) => {
-      console.log(posts)
-    });
   }
 
   getOlder() {

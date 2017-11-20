@@ -13,3 +13,22 @@
   margin-left: 0px;
 }
 
+html, body{
+  min-height: 100%;
+}
+body{
+  position: relative;
+}
+
+.cdk-global-overlay-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+}
+
+.cdk-overlay-pane {
+  background-color: rgba(179,140,0,0.8);
+}

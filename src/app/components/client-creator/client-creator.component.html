@@ -1,3 +1,15 @@
-<p>
-  client-creator works!
-</p>
+<div>
+  <span>Dane do kontaktu</span>
+  <form>
+    <div>
+      <input type="text" [(ngModel)]="client.name" name="name" placeholder="Nazwa pracodawcy">
+    </div>
+    <div>
+      <input type="text" name="phone" placeholder="Telefon">
+    </div>
+    <div>
+      <input type="text" name="email" placeholder="E-mail">
+    </div>
+  </form>
+</div>
+<app-simple-auth-form></app-simple-auth-form>

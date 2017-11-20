@@ -4,24 +4,28 @@
       <img routerLink="/" src="../assets/img/logo-black.png" alt="logo" class="jdm-logo">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/offer_search" routerLinkActive="router-active">Oferty</a>
+          <a class="nav-link" routerLink="/offer_search" routerLinkActive="router-active">Oferty pracy</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/client_saerch" routerLinkActive="router-active">Pracodawcy</a>
+          <a class="nav-link" routerLink="/client_saerch" routerLinkActive="router-active">Profile pracodawców</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/obserwuj_oferty" routerLinkActive="router-active">Obserwuj oferty</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="accountMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="accountMenuLink" data-toggle="dropdown" aria-haspopup="true"
+             aria-expanded="false">
             Twoje konto
           </a>
           <div class="dropdown-menu" aria-labelledby="accountMenuLink">
-            <a class="dropdown-item" routerLink="/artist_creator" routerLinkActive="router-active">Załóż profil muzyka</a>
-            <a class="dropdown-item" routerLink="/client_creator" routerLinkActive="router-active">Załóż profil pracodawcy</a>
+            <a class="dropdown-item" *ngIf='!isLogged' (click)="openLoginDialog('client')">Załóż profil pracodawcy</a>
+            <a class="dropdown-item" *ngIf='!isLogged' (click)="openLoginDialog('artist')">Załóż profil muzyka</a>
+            <a class="dropdown-item" *ngIf='isLogged' routerLink="/profile" routerLinkActive="router-active">Edytuj
+              profil</a>
             <a class="dropdown-item" routerLink="/offer_creator" routerLinkActive="router-active">Dodaj ofertę</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item">Zaloguj się</a>
+            <a class="dropdown-item" *ngIf='!isLogged' (click)="openLoginDialog()">Zaloguj się</a>
+            <a class="dropdown-item" *ngIf='isLogged' (click)="logout()">Wyloguj się</a>
           </div>
         </li>
       </ul>

@@ -1,0 +1,47 @@
+<div mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>X</button>
+  </mat-dialog-actions>
+  <div class="btn-group btn-group-lg" role="group">
+    <button type="button" class="btn btn-primary" [ngClass]="{'active': myFormKind==formKind.Login}"
+            (click)="selectFormKind(formKind.Login)">Zaloguj się
+    </button>
+    <button type="button" class="btn btn-primary" [ngClass]="{'active': myFormKind==formKind.Register}"
+            (click)="selectFormKind(formKind.Register)">Zarejestruj się
+    </button>
+  </div>
+
+  <div [ngSwitch]="myFormKind">
+    <div *ngSwitchCase="formKind.Login">
+      <form (submit)="doLogin()">
+        <div>
+          <input type="text" [(ngModel)]="accountForm.loginForm.email" name="email" placeholder="E-mail">
+        </div>
+        <div>
+          <input type="text" name="password" placeholder="Hasło">
+        </div>
+        <div>
+          <button type="submit">Zaloguj się</button>
+        </div>
+      </form>
+    </div>
+
+    <div *ngSwitchCase="formKind.Register">
+      <div class="btn-group" role="group">
+        <div>
+          <button type="button" class="btn btn-info" [ngClass]="{'active': myRegisterKind==registerKind.Artist}"
+                  (click)="selectRegisterKind(registerKind.Artist)">Konto artysty
+          </button>
+          <button type="button" class="btn btn-info" [ngClass]="{'active': myRegisterKind==registerKind.Client}"
+                  (click)="selectRegisterKind(registerKind.Client)">Konto pracodawcy
+          </button>
+        </div>
+      </div>
+      <div [ngSwitch]="myRegisterKind">
+        <app-artist-creator [artist]="accountForm.registerFrom.artist" *ngSwitchCase="registerKind.Artist"></app-artist-creator>
+        <app-client-creator [client]="accountForm.registerFrom.client" *ngSwitchCase="registerKind.Client"></app-client-creator>
+      </div>
+      <button>Zarejestruj się</button>
+    </div>
+  </div>
+</div>
