@@ -2,7 +2,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from '@angular/common/http';
-import {RouterModule, Routes} from "@angular/router";
 import {MatDialogModule} from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
@@ -29,15 +28,7 @@ import {SimpleAuthFormComponent} from './components/simple-auth-form/simple-auth
 import {OfferFormComponent} from './components/offer-form/offer-form.component';
 import {AlertComponent} from './components/alert/alert.component';
 import {AlertService} from "./services/alert.service";
-
-const appRoutes: Routes = [
-  {path: '', component: MainPageComponent},
-  {path: 'offer_search', component: OfferSearchComponent},
-  {path: 'client_saerch', component: ClientSearchComponent},
-  {path: 'artist/:id', component: ArtistProfileComponent},
-  {path: 'offer_creator', component: OfferCreatorComponent},
-  {path: '**', component: NotFoundComponent}
-];
+import {routing} from "./app.routing";
 
 @NgModule({
   declarations: [
@@ -71,7 +62,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpClientModule,
     MatDialogModule,
-    RouterModule.forRoot(appRoutes)
+    routing
   ],
   providers: [
     TagService,
