@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AccountPopupComponent, ClientRegisterForm} from "../account-popup/account-popup.component";
 import {MatDialog} from "@angular/material";
+import {ClientSimple} from "../../model/client.simple.model";
 
 @Component({
   selector: 'app-offer-creator',
@@ -9,29 +10,34 @@ import {MatDialog} from "@angular/material";
 })
 export class OfferCreatorComponent implements OnInit {
   step: number;
-  client: ClientRegisterForm;
+  simpleClient: ClientSimple;
 
   constructor(public dialog: MatDialog) {
     this.step = 1;
-    this.client = new ClientRegisterForm();
+    this.simpleClient = new ClientSimple("", "", "", "", "");
   }
 
   ngOnInit() {
   }
 
-  openLoginDialog(type: string) {
+  onLoginView() {
     let dialogRef = this.dialog.open(AccountPopupComponent, {
-      height: '400px',
+      height: 'auto',
       width: '600px',
-      data: {type: type}
+      data: {type: "login"}
     });
 
     dialogRef.afterClosed().subscribe(result => {
     });
   }
 
+  onClientCreated(data: string) {
+    console.log("onClientCreated: ");
+    console.log(data);
+  }
+
   nextStep() {
-    console.log(this.client)
+    console.log(this.simpleClient)
     this.step++;
   }
 

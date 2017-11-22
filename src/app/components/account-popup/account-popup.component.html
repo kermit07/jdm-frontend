@@ -2,31 +2,12 @@
   <mat-dialog-actions>
     <button mat-button mat-dialog-close>X</button>
   </mat-dialog-actions>
-  <div class="btn-group btn-group-lg" role="group">
-    <button type="button" class="btn btn-primary" [ngClass]="{'active': myFormKind==formKind.Login}"
-            (click)="selectFormKind(formKind.Login)">Zaloguj się
-    </button>
-    <button type="button" class="btn btn-primary" [ngClass]="{'active': myFormKind==formKind.Register}"
-            (click)="selectFormKind(formKind.Register)">Zarejestruj się
-    </button>
-  </div>
-
   <div [ngSwitch]="myFormKind">
     <div *ngSwitchCase="formKind.Login">
-      <form (submit)="doLogin()">
-        <div>
-          <input type="text" [(ngModel)]="accountForm.loginForm.email" name="email" placeholder="E-mail">
-        </div>
-        <div>
-          <input type="text" name="password" placeholder="Hasło">
-        </div>
-        <div>
-          <button type="submit">Zaloguj się</button>
-        </div>
-      </form>
+      <app-account-login (registerView)="onRegisterView()"></app-account-login>
     </div>
 
-    <div *ngSwitchCase="formKind.Register">
+    <div *ngSwitchCase="formKind.Register"> s
       <div class="btn-group" role="group">
         <div>
           <button type="button" class="btn btn-info" [ngClass]="{'active': myRegisterKind==registerKind.Artist}"
@@ -38,10 +19,15 @@
         </div>
       </div>
       <div [ngSwitch]="myRegisterKind">
-        <app-artist-creator [artist]="accountForm.registerFrom.artist" *ngSwitchCase="registerKind.Artist"></app-artist-creator>
-        <app-client-creator [client]="accountForm.registerFrom.client" *ngSwitchCase="registerKind.Client"></app-client-creator>
+        <app-artist-creator [simpleArtist]="simpleArtist"
+                            *ngSwitchCase="registerKind.Artist"
+                            (loginView)="onLoginView()"
+                            (artistCreated)="onArtistCreated($event)"></app-artist-creator>
+        <app-client-creator [simpleClient]="simpleClient"
+                            *ngSwitchCase="registerKind.Client"
+                            (loginView)="onLoginView()"
+                            (clientCreated)="onClientCreated($event)"></app-client-creator>
       </div>
-      <button>Zarejestruj się</button>
     </div>
   </div>
 </div>

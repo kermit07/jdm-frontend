@@ -1,8 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {Form} from "@angular/forms";
 import {AlertService} from "../../services/alert.service";
 import {AlertType} from "../../model/alert.model";
+import {ArtistSimple} from "../../model/artist.simple.model";
+import {ClientSimple} from "../../model/client.simple.model";
 
 @Component({
   selector: 'app-account-popup',
@@ -15,11 +16,14 @@ export class AccountPopupComponent implements OnInit {
   registerKind = RegisterKind;
   myRegisterKind: RegisterKind = RegisterKind.Artist;
 
-  accountForm: AccountForm = new AccountForm();
+  simpleArtist: ArtistSimple;
+  simpleClient: ClientSimple;
 
   constructor(public dialogRef: MatDialogRef<AccountPopupComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
               public alertService: AlertService) {
+    this.simpleArtist = new ArtistSimple("", "", "", "", "");
+    this.simpleClient = new ClientSimple("", "", "", "", "");
     this.myFormKind = FormKind.Login;
     if (data.type == "client") {
       this.myFormKind = FormKind.Register;
@@ -33,6 +37,24 @@ export class AccountPopupComponent implements OnInit {
   ngOnInit() {
   }
 
+  onRegisterView() {
+    this.myFormKind = FormKind.Register;
+  }
+
+  onLoginView() {
+    this.myFormKind = FormKind.Login;
+  }
+
+  onArtistCreated(data: string) {
+    console.log("onArtistCreated: ");
+    console.log(data);
+  }
+
+  onClientCreated(data: string) {
+    console.log("onClientCreated: ");
+    console.log(data);
+  }
+
   onNoClick(): void {
     this.dialogRef.close();
   }
@@ -41,27 +63,23 @@ export class AccountPopupComponent implements OnInit {
     this.alertService.alert(AlertType.Success, "Zalogowano!")
   }
 
-  selectFormKind(kind) {
-    this.myFormKind = kind;
-  }
-
   selectRegisterKind(kind) {
     this.myRegisterKind = kind;
   }
 }
 
 enum FormKind {
-  Login = 0,
-  Register = 1
+  Login,
+  Register
 }
 
 enum RegisterKind {
-  Artist = 0,
-  Client = 1
+  Artist,
+  Client
 }
 
 export class AccountForm {
-  loginForm: LoginForm = new LoginForm()
+  loginForm: LoginForm = new LoginForm();
   registerFrom: RegisterForm = new RegisterForm();
 }
 

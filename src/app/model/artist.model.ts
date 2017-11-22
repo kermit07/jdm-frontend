@@ -10,9 +10,8 @@ export class Artist extends User {
   views: number;
   address: Address;
 
-
-  constructor(id: number, email: string, name: string, surname: string, phone: string, dateOfBirth: string, photo: string, views: number, address: Address) {
-    super(id, email, UserType.Artist);
+  constructor(id: number, email: string, password: string, name: string, surname: string, phone: string, dateOfBirth: string, photo: string, views: number, address: Address) {
+    super(id, email, password, UserType.Artist);
     this.name = name;
     this.surname = surname;
     this.phone = phone;

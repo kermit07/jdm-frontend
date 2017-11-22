@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AccountForm, ClientRegisterForm} from "../account-popup/account-popup.component";
+import {ClientSimple} from "../../model/client.simple.model";
 
 @Component({
   selector: 'app-client-creator',
@@ -7,11 +8,21 @@ import {AccountForm, ClientRegisterForm} from "../account-popup/account-popup.co
   styleUrls: ['./client-creator.component.css']
 })
 export class ClientCreatorComponent implements OnInit {
-  @Input() client:ClientRegisterForm;
+  @Input() simpleClient:ClientSimple;
+  @Output() clientCreated = new EventEmitter<ClientSimple>();
+  @Output() loginView = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  createClient() {
+    this.clientCreated.emit(this.simpleClient);
+  }
+
+  onLogin() {
+    this.loginView.emit();
   }
 
 }

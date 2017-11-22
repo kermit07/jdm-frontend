@@ -29,6 +29,7 @@ import {OfferFormComponent} from './components/offer-form/offer-form.component';
 import {AlertComponent} from './components/alert/alert.component';
 import {AlertService} from "./services/alert.service";
 import {routing} from "./app.routing";
+import {AccountLoginComponent} from "./components/account-login/account-login.component";
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import {routing} from "./app.routing";
     AccountPopupComponent,
     SimpleAuthFormComponent,
     OfferFormComponent,
-    AlertComponent
+    AlertComponent,
+    AccountLoginComponent
   ],
   entryComponents: [
     AccountPopupComponent

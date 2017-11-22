@@ -5,9 +5,9 @@
 </div>
 
 <div *ngIf="step == 1">
-  <app-client-creator [client]="client"></app-client-creator>
-  <button (click)="nextStep()">Dalej</button>
-  Masz już konto? <a (click)="openLoginDialog()">Zaloguj się</a>
+  <app-client-creator [simpleClient]="simpleClient"
+                      (loginView)="onLoginView()"
+                      (clientCreated)="onClientCreated($event)"></app-client-creator>
 </div>
 <div *ngIf="step == 2">
   <app-offer-form></app-offer-form>
