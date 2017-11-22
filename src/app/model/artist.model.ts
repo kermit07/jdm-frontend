@@ -1,19 +1,24 @@
-export class Artist {
-  public name: string;
-  public surname: string;
-  public email: string;
-  public phone: string;
-  public views: number;
-  public dateOfBirth: string;
-  public photo: string;
+import {User, UserType} from "./user.model";
+import {Address} from "./address.model";
 
-  constructor(name: string, surname: string, email: string, phone: string, views: number, dateOfBirth: string, photo: string) {
+export class Artist extends User {
+  name: string;
+  surname: string;
+  phone: string;
+  dateOfBirth: string;
+  photo: string;
+  views: number;
+  address: Address;
+
+
+  constructor(id: number, email: string, name: string, surname: string, phone: string, dateOfBirth: string, photo: string, views: number, address: Address) {
+    super(id, email, UserType.Artist);
     this.name = name;
     this.surname = surname;
-    this.email = email;
     this.phone = phone;
-    this.views = views;
     this.dateOfBirth = dateOfBirth;
     this.photo = photo;
+    this.views = views;
+    this.address = address;
   }
 }
