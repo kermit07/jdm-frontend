@@ -9,7 +9,7 @@ import {AccountPopupComponent} from "./components/account-popup/account-popup.co
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  isLogged:boolean = false;
+  isLogged: boolean = false;
 
   constructor(public dialog: MatDialog) {
   }
@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
   }
 
-  openLoginDialog(type:string) {
+  openLoginDialog(type: string) {
     let dialogRef = this.dialog.open(AccountPopupComponent, {
       height: 'auto',
       width: '600px',

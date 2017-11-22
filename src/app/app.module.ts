@@ -26,7 +26,9 @@ import {OfferGridComponent} from './components/offer-grid/offer-grid.component';
 import {AccountPopupComponent} from './components/account-popup/account-popup.component';
 import {OfferCreatorComponent} from "./components/offer-creator/offer-creator.component";
 import {SimpleAuthFormComponent} from './components/simple-auth-form/simple-auth-form.component';
-import { OfferFormComponent } from './components/offer-form/offer-form.component';
+import {OfferFormComponent} from './components/offer-form/offer-form.component';
+import {AlertComponent} from './components/alert/alert.component';
+import {AlertService} from "./services/alert.service";
 
 const appRoutes: Routes = [
   {path: '', component: MainPageComponent},
@@ -57,7 +59,8 @@ const appRoutes: Routes = [
     OfferGridComponent,
     AccountPopupComponent,
     SimpleAuthFormComponent,
-    OfferFormComponent
+    OfferFormComponent,
+    AlertComponent
   ],
   entryComponents: [
     AccountPopupComponent
@@ -70,7 +73,9 @@ const appRoutes: Routes = [
     MatDialogModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [TagService],
+  providers: [
+    TagService,
+    AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

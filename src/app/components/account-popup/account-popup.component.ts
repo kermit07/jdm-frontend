@@ -1,6 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {Form} from "@angular/forms";
+import {AlertService} from "../../services/alert.service";
+import {AlertType} from "../../model/alert.model";
 
 @Component({
   selector: 'app-account-popup',
@@ -16,7 +18,8 @@ export class AccountPopupComponent implements OnInit {
   accountForm: AccountForm = new AccountForm();
 
   constructor(public dialogRef: MatDialogRef<AccountPopupComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any) {
+              @Inject(MAT_DIALOG_DATA) public data: any,
+              public alertService: AlertService) {
     this.myFormKind = FormKind.Login;
     if (data.type == "client") {
       this.myFormKind = FormKind.Register;
@@ -35,7 +38,7 @@ export class AccountPopupComponent implements OnInit {
   }
 
   doLogin() {
-    console.log("do login");
+    this.alertService.alert(AlertType.Success, "Zalogowano!")
   }
 
   selectFormKind(kind) {
