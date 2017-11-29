@@ -18,8 +18,8 @@
             Twoje konto
           </a>
           <div class="dropdown-menu" aria-labelledby="accountMenuLink">
-            <a class="dropdown-item" *ngIf='!isLogged' (click)="openClientRegisterDialog()">Załóż profil pracodawcy</a>
             <a class="dropdown-item" *ngIf='!isLogged' (click)="openArtistRegisterDialog()">Załóż profil muzyka</a>
+            <a class="dropdown-item" *ngIf='!isLogged' (click)="openClientRegisterDialog()">Załóż profil pracodawcy</a>
             <a class="dropdown-item" *ngIf='isLogged' routerLink="/profile" routerLinkActive="router-active">Edytuj
               profil</a>
             <a class="dropdown-item" routerLink="/offer_creator" routerLinkActive="router-active">Dodaj ofertę</a>

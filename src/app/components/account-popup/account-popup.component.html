@@ -1,21 +1,23 @@
 <app-modal id={{id}} width="400">
-  <button class="exit-btn" type="button" (click)="cancel()">X</button>
+  <button type="button" class="exit-btn close" aria-label="Close" (click)="cancel()">
+    <span aria-hidden="true">&times;</span>
+  </button>
   <div [ngSwitch]="myFormKind">
     <div *ngSwitchCase="formKind.Login">
       <app-account-login (registerView)="onRegisterView()"></app-account-login>
     </div>
 
     <div *ngSwitchCase="formKind.Register">
-      <div class="btn-group" role="group">
-        <div>
-          <button type="button" class="btn btn-info" [ngClass]="{'active': myRegisterKind==registerKind.Artist}"
-                  (click)="selectRegisterKind(registerKind.Artist)">Konto artysty
-          </button>
-          <button type="button" class="btn btn-info" [ngClass]="{'active': myRegisterKind==registerKind.Client}"
-                  (click)="selectRegisterKind(registerKind.Client)">Konto pracodawcy
-          </button>
-        </div>
-      </div>
+      <ul class="nav nav-tabs nav-fill">
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="{'active': myRegisterKind==registerKind.Artist}"
+             (click)="selectRegisterKind(registerKind.Artist)">Konto muzyka</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="{'active': myRegisterKind==registerKind.Client}"
+             (click)="selectRegisterKind(registerKind.Client)">Konto pracodawcy</a>
+        </li>
+      </ul>
       <div [ngSwitch]="myRegisterKind">
         <app-artist-creator *ngSwitchCase="registerKind.Artist"
                             (loginView)="onLoginView()"

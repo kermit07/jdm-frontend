@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, EventEmitter, OnDestroy, OnInit, Output, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import {AlertService} from "../../services/alert.service";
 import {AlertType} from "../../model/alert.model";
 import {NgForm} from "@angular/forms";
