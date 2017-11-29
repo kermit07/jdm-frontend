@@ -1,6 +1,7 @@
-import {Component, EventEmitter, OnInit, Output, ViewEncapsulation} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, OnDestroy, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import {AlertService} from "../../services/alert.service";
 import {AlertType} from "../../model/alert.model";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-account-login',
@@ -9,9 +10,7 @@ import {AlertType} from "../../model/alert.model";
   encapsulation: ViewEncapsulation.None
 })
 export class AccountLoginComponent implements OnInit {
-  model: any = {};
   loading = false;
-  returnUrl: string;
   @Output() registerView = new EventEmitter();
 
   constructor(private alertService: AlertService) {
@@ -20,16 +19,19 @@ export class AccountLoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  login() {
+  login(form: NgForm) {
     this.loading = true;
+    const email = form.value.email;
+    const password = form.value.password;
     setTimeout(() => {
       this.loading = false;
       this.alertService.alert(AlertType.Success, "Zalogowano!");
     }, 2000)
-    console.log(this.model);
+    console.log(email);
+    console.log(password);
   }
 
-  onRegister() {
+  backToRegister() {
     this.registerView.emit();
   }
 

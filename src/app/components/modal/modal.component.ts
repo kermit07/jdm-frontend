@@ -10,31 +10,24 @@ import {ModalService} from "../../services/modal.service";
 export class ModalComponent implements OnInit, OnDestroy {
   @Input() id: string;
   @Input() width: number;
-
-  elem: any;    // the <app-modal> element
-  body: any;
+  private elem: any;
+  private body: any;
 
   constructor(private modalSvc: ModalService,
               private element: ElementRef) {
-
     this.elem = this.element.nativeElement;
   }
 
-
   ngOnInit(): void {
-
     if (!this.id) {
       throw 'modal must have an id';
     }
-
     this.body = document.getElementsByTagName('body')[0];
     this.body.appendChild(this.elem);
-
     this.modalSvc.add(this);
   }
 
   ngOnDestroy(): void {
-
     this.modalSvc.remove(this.id);
     this.elem.remove();
   }
@@ -50,20 +43,14 @@ export class ModalComponent implements OnInit, OnDestroy {
     return {};
   }
 
-  open(hData ?: any): void {
-    if (!hData) {
-      hData = {};
-    }
-
+  open(): void {
     this.body.classList.add('modal-open');
     this.elem.style.display = 'block';
   }
 
-
   close(): void {
     this.elem.style.display = 'none';
     this.body.classList.remove('modal-open');
-
     return null;
   }
 }

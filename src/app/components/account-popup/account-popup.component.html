@@ -1,5 +1,5 @@
-<app-modal id="account-popup" width="400">
-  <button class="exit-btn" type="button" (click)="cancel('account-popup')">X</button>
+<app-modal id={{id}} width="400">
+  <button class="exit-btn" type="button" (click)="cancel()">X</button>
   <div [ngSwitch]="myFormKind">
     <div *ngSwitchCase="formKind.Login">
       <app-account-login (registerView)="onRegisterView()"></app-account-login>

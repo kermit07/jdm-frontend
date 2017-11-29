@@ -1,35 +1,56 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {AlertService} from "../../services/alert.service";
-import {ModalService} from "../../services/modal.service";
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
+import {ModalService, ModalType} from "../../services/modal.service";
 import {User} from "../../model/user.model";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'app-account-popup',
   templateUrl: './account-popup.component.html',
   styleUrls: ['./account-popup.component.css']
 })
-export class AccountPopupComponent implements OnInit {
+export class AccountPopupComponent implements OnInit, OnDestroy {
+  private id = "account-popup";
   formKind = FormKind;
-  myFormKind: FormKind = FormKind.Login;
+  myFormKind: FormKind;
   registerKind = RegisterKind;
-  myRegisterKind: RegisterKind = RegisterKind.Artist;
-
+  myRegisterKind: RegisterKind;
+  modalSubsribtion: Subscription;
   @Output() userCreated = new EventEmitter<User>();
 
-  constructor(private modalSvc: ModalService,
-              public alertService: AlertService) {
-    this.myFormKind = FormKind.Login;
+  constructor(private modalSvc: ModalService) {
   }
 
   ngOnInit() {
+    this.modalSubsribtion = this.modalSvc.getObserval().subscribe((modalType: ModalType) => {
+      if (modalType === ModalType.Login) {
+        this.myFormKind = FormKind.Login;
+      } else if (modalType === ModalType.ArtistRegister) {
+        this.myFormKind = FormKind.Register;
+        this.myRegisterKind = RegisterKind.Artist;
+      } else if (modalType === ModalType.ClientRegister) {
+        this.myFormKind = FormKind.Register;
+        this.myRegisterKind = RegisterKind.Client;
+      } else {
+        this.myFormKind = FormKind.Login;
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.modalSubsribtion.unsubscribe();
   }
 
   onRegisterView() {
     this.myFormKind = FormKind.Register;
+    this.myRegisterKind = RegisterKind.Artist;
   }
 
   onLoginView() {
     this.myFormKind = FormKind.Login;
+  }
+
+  selectRegisterKind(kind) {
+    this.myRegisterKind = kind;
   }
 
   onArtistCreated(data: any) {
@@ -42,12 +63,8 @@ export class AccountPopupComponent implements OnInit {
     console.log(data);
   }
 
-  selectRegisterKind(kind) {
-    this.myRegisterKind = kind;
-  }
-
-  cancel(id: string) {
-    this.modalSvc.cancel(id);
+  cancel() {
+    this.modalSvc.cancel(this.id);
   }
 }
 
@@ -59,39 +76,4 @@ enum FormKind {
 enum RegisterKind {
   Artist,
   Client
-}
-
-export class AccountForm {
-  loginForm: LoginForm = new LoginForm();
-  registerFrom: RegisterForm = new RegisterForm();
-}
-
-class LoginForm {
-  email: string = "";
-}
-
-class RegisterForm {
-  artist: ArtistRegisterForm = new ArtistRegisterForm();
-  client: ClientRegisterForm = new ClientRegisterForm();
-}
-
-export class SimpleAuthForm {
-  email: string;
-}
-
-export class ArtistRegisterForm extends SimpleAuthForm {
-  name: string = "";
-  surname: string = "";
-
-  constructor() {
-    super();
-  }
-}
-
-export class ClientRegisterForm extends SimpleAuthForm {
-  name: string = "";
-
-  constructor() {
-    super();
-  }
 }

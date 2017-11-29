@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ModalService} from "./services/modal.service";
+import {ModalService, ModalType} from "./services/modal.service";
 
 
 @Component({
@@ -16,8 +16,16 @@ export class AppComponent implements OnInit {
   ngOnInit() {
   }
 
-  openLoginDialog(type: string) {
-    this.modalSvc.open('account-popup');
+  openArtistRegisterDialog() {
+    this.modalSvc.open('account-popup', ModalType.ArtistRegister);
+  }
+
+  openClientRegisterDialog() {
+    this.modalSvc.open('account-popup', ModalType.ClientRegister);
+  }
+
+  openLoginDialog() {
+    this.modalSvc.open('account-popup', ModalType.Login);
   }
 
   logout() {

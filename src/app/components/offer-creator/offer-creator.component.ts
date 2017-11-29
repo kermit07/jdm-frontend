@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AccountPopupComponent, ClientRegisterForm} from "../account-popup/account-popup.component";
-import {MatDialog} from "@angular/material";
-import {ClientSimple} from "../../model/client.simple.model";
+import {ModalService, ModalType} from "../../services/modal.service";
 
 @Component({
   selector: 'app-offer-creator',
@@ -9,26 +7,16 @@ import {ClientSimple} from "../../model/client.simple.model";
   styleUrls: ['./offer-creator.component.css']
 })
 export class OfferCreatorComponent implements OnInit {
-  step: number;
-  simpleClient: ClientSimple;
+  step = 1;
 
-  constructor(public dialog: MatDialog) {
-    this.step = 1;
-    this.simpleClient = new ClientSimple("", "", "", "", "");
+  constructor(private modalSvc: ModalService) {
   }
 
   ngOnInit() {
   }
 
   onLoginView() {
-    let dialogRef = this.dialog.open(AccountPopupComponent, {
-      height: 'auto',
-      width: '600px',
-      data: {type: "login"}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-    });
+    this.modalSvc.open('account-popup', ModalType.Login);
   }
 
   onClientCreated(data: string) {
@@ -37,7 +25,6 @@ export class OfferCreatorComponent implements OnInit {
   }
 
   nextStep() {
-    console.log(this.simpleClient)
     this.step++;
   }
 
@@ -45,5 +32,4 @@ export class OfferCreatorComponent implements OnInit {
     console.log("prevStep ?")
     this.step--;
   }
-
 }
