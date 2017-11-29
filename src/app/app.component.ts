@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import {AccountPopupComponent} from "./components/account-popup/account-popup.component";
+import {ModalService} from "./services/modal.service";
 
 
 @Component({
@@ -11,26 +10,17 @@ import {AccountPopupComponent} from "./components/account-popup/account-popup.co
 export class AppComponent implements OnInit {
   isLogged: boolean = false;
 
-  constructor(public dialog: MatDialog) {
+  constructor(private modalSvc: ModalService) {
   }
 
   ngOnInit() {
   }
 
   openLoginDialog(type: string) {
-    let dialogRef = this.dialog.open(AccountPopupComponent, {
-      height: 'auto',
-      width: '600px',
-      data: {type: type}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-    });
-
+    this.modalSvc.open('account-popup');
   }
 
   logout() {
     this.isLogged = false;
   }
-
 }

@@ -1,5 +1,6 @@
 import {Component, EventEmitter, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import {AlertService} from "../../services/alert.service";
+import {AlertType} from "../../model/alert.model";
 
 @Component({
   selector: 'app-account-login',
@@ -13,13 +14,18 @@ export class AccountLoginComponent implements OnInit {
   returnUrl: string;
   @Output() registerView = new EventEmitter();
 
-  constructor(
-    private alertService: AlertService) { }
+  constructor(private alertService: AlertService) {
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   login() {
     this.loading = true;
+    setTimeout(() => {
+      this.loading = false;
+      this.alertService.alert(AlertType.Success, "Zalogowano!");
+    }, 2000)
     console.log(this.model);
   }
 

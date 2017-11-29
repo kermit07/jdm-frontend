@@ -1,26 +1,29 @@
-<app-simple-auth-form></app-simple-auth-form>
+<app-simple-auth-form (userEmmiter)="loginData($event)"
+                      (isFormCorrect)="onFormCorrect($event)"></app-simple-auth-form>
 <div>
-  <span>Dane do kontaktu</span>
-  <form name="form" (ngSubmit)="f.form.valid && createClient()" #f="ngForm" novalidate>
-    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !name.valid }">
-      <input type="text" class="form-control" name="name" [(ngModel)]="simpleClient.name" #name="ngModel"
-             required placeholder="Nazwa pracodawcy"/>
-      <div *ngIf="f.submitted && !name.valid" class="help-block">Imię jest wymagane</div>
-    </div>
-    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !contactEmail.valid }">
-      <input type="text" class="form-control" name="name" [(ngModel)]="simpleClient.contactEmail" #contactEmail="ngModel"
-             required placeholder="E-mail kontaktowy"/>
-      <div *ngIf="f.submitted && !contactEmail.valid" class="help-block">E-mail kontaktowy jest wymagany</div>
+  <span>Dane do kontaktu<span *ngIf="!f.form.valid"> (proszę uzupełnić)</span></span>
+  <form name="form" (ngSubmit)="f.form.valid && createArtist()" #f="ngForm">
+    <div class="form-group">
+      <input type="text" class="form-control" name="name" placeholder="Imię*"
+             required [(ngModel)]="simpleClient.name" #name="ngModel"/>
+      <div *ngIf="!name.valid && name.touched" class="help-block">Imię jest wymagane</div>
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" name="surname" [(ngModel)]="simpleClient.phone" #phone="ngModel"
-             placeholder="Telefon" autocomplete="false"/>
+      <input type="text" class="form-control" name="contactEmail" placeholder="E-mail kontaktowy*"
+             [(ngModel)]="simpleClient.contactEmail" #contactEmail="ngModel" required email/>
+      <div *ngIf="!contactEmail.valid && contactEmail.touched" class="help-block">Proszę wprowadzić poprawny e-mail</div>
     </div>
     <div class="form-group">
-      <button [disabled]="loading" class="btn btn-primary">Dodaj konto</button>
+      <input type="text" class="form-control" name="phone" placeholder="Telefon"
+             [(ngModel)]="simpleClient.phone" #phone="ngModel"/>
+    </div>
+    <div class="form-group">
+      <button [disabled]="!authValid || !f.form.valid || loading" type="submit" class="btn btn-primary">Dodaj konto
+      </button>
       <img *ngIf="loading"
            src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
-      Masz już konto? <button type="button" (click)="onLogin()" class="btn btn-link">Zaloguj się</button>
+      Masz już konto?
+      <button type="button" (click)="backToLogin()" class="btn btn-link">Zaloguj się</button>
     </div>
   </form>
 </div>

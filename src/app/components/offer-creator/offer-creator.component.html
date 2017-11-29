@@ -5,8 +5,7 @@
 </div>
 
 <div *ngIf="step == 1">
-  <app-client-creator [simpleClient]="simpleClient"
-                      (loginView)="onLoginView()"
+  <app-client-creator (loginView)="onLoginView()"
                       (clientCreated)="onClientCreated($event)"></app-client-creator>
 </div>
 <div *ngIf="step == 2">

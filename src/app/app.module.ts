@@ -30,6 +30,8 @@ import {AlertComponent} from './components/alert/alert.component';
 import {AlertService} from "./services/alert.service";
 import {routing} from "./app.routing";
 import {AccountLoginComponent} from "./components/account-login/account-login.component";
+import {ModalService} from "./services/modal.service";
+import {ModalComponent} from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,8 @@ import {AccountLoginComponent} from "./components/account-login/account-login.co
     SimpleAuthFormComponent,
     OfferFormComponent,
     AlertComponent,
-    AccountLoginComponent
+    AccountLoginComponent,
+    ModalComponent
   ],
   entryComponents: [
     AccountPopupComponent
@@ -68,7 +71,8 @@ import {AccountLoginComponent} from "./components/account-login/account-login.co
   ],
   providers: [
     TagService,
-    AlertService],
+    AlertService,
+    ModalService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

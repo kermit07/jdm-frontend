@@ -1,5 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {AccountForm, ClientRegisterForm} from "../account-popup/account-popup.component";
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ClientSimple} from "../../model/client.simple.model";
 
 @Component({
@@ -8,20 +7,31 @@ import {ClientSimple} from "../../model/client.simple.model";
   styleUrls: ['./client-creator.component.css']
 })
 export class ClientCreatorComponent implements OnInit {
-  @Input() simpleClient:ClientSimple;
+  simpleClient: ClientSimple;
+  authValid = false;
   @Output() clientCreated = new EventEmitter<ClientSimple>();
   @Output() loginView = new EventEmitter();
 
-  constructor() { }
+  constructor() {
+    this.simpleClient = new ClientSimple("", "", "", "", "");
+  }
 
   ngOnInit() {
   }
 
-  createClient() {
+  loginData(data: { email: string, password: string }) {
+    console.log(data)
+  }
+
+  onFormCorrect(isValid: boolean) {
+    this.authValid = isValid;
+  }
+
+  createArtist() {
     this.clientCreated.emit(this.simpleClient);
   }
 
-  onLogin() {
+  backToLogin() {
     this.loginView.emit();
   }
 
